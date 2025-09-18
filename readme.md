@@ -1,4 +1,11 @@
-# Emotion Detection Flask App with Hugging Face
+### Key Files
+
+- **server.py**: Main Flask application entry point
+- **emotion_detection.py**: Core emotion detection functionality using Hugging Face models
+- **emotion_detection_v1.py**: Previous version or alternative implementation
+- **test_emotion_detection.py**: Unit tests for emotion detection functionality
+- **static/mywebscript.js**: Frontend JavaScript for user interactions
+- **templates/**: HTML templates for the web interface# Emotion Detection Flask App with Hugging Face
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.0%2B-green.svg)](https://flask.palletsprojects.com/)
@@ -58,12 +65,12 @@ A real-time emotion detection web application built with Flask and powered by st
 
 4. **Download pre-trained models** (First run will automatically download)
    ```bash
-   python download_models.py
+   python emotion_detection.py
    ```
 
 5. **Run the application**
    ```bash
-   python app.py
+   python server.py
    ```
 
 6. **Open your browser** and navigate to `http://localhost:5000`
@@ -90,50 +97,20 @@ python-dotenv==1.0.0
 ## 🏗️ Project Structure
 
 ```
-emotion-detection-hf/
+EmotionDetection/
 │
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── README.md             # Project documentation
-├── LICENSE               # MIT License
-├── .env                  # Environment variables
-├── .gitignore           # Git ignore rules
-│
-├── models/              # Pre-trained models directory
-│   ├── __init__.py
-│   ├── emotion_classifier.py
-│   └── model_utils.py
-│
-├── static/              # Static files (CSS, JS, images)
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── main.js
-│   └── assets/
-│       └── demo.gif
-│
-├── templates/           # HTML templates
-│   ├── base.html
-│   ├── index.html
-│   ├── results.html
-│   └── api_docs.html
-│
-├── tests/              # Unit tests
-│   ├── __init__.py
-│   ├── test_app.py
-│   ├── test_models.py
-│   └── test_api.py
-│
-├── utils/              # Utility functions
-│   ├── __init__.py
-│   ├── preprocessor.py
-│   ├── postprocessor.py
-│   └── validators.py
-│
-└── docs/               # Additional documentation
-    ├── API.md
-    ├── DEPLOYMENT.md
-    └── CONTRIBUTING.md
+├── __pycache__/            # Python cache files (auto-generated)
+├── static/                 # Static files (CSS, JS, images)
+│   └── mywebscript.js     # Client-side JavaScript
+├── templates/              # HTML templates for Flask
+├── __init__.py            # Python package initialization
+├── emotion_detection.py   # Main emotion detection logic
+├── emotion_detection_v1.py # Alternative/previous version
+├── server.py              # Flask server application
+├── test_emotion_detection.py # Unit tests
+├── .gitignore             # Git ignore rules
+├── readme.md              # Project documentation
+└── requirements.txt       # Python dependencies
 ```
 
 ## 🔧 Usage
@@ -209,7 +186,7 @@ This application supports multiple pre-trained models from Hugging Face:
 You can easily switch models by updating the configuration:
 
 ```python
-# In models/emotion_classifier.py
+# In emotion_detection.py
 MODEL_OPTIONS = {
     "distilroberta": "j-hartmann/emotion-english-distilroberta-base",
     "bert": "nateraw/bert-base-uncased-emotion",
@@ -246,14 +223,11 @@ LOG_FILE=emotion_detection.log
 Run the test suite:
 
 ```bash
-# Run all tests
-python -m pytest tests/
+# Run the test file
+python test_emotion_detection.py
 
-# Run with coverage
-python -m pytest tests/ --cov=./ --cov-report=html
-
-# Run specific test file
-python -m pytest tests/test_api.py -v
+# Run with Python's unittest module
+python -m unittest test_emotion_detection.py -v
 ```
 
 ## 📊 Performance
@@ -301,7 +275,7 @@ docker run -p 5000:5000 emotion-detection
 1. Install Heroku CLI
 2. Create `Procfile`:
    ```
-   web: gunicorn app:app
+   web: gunicorn server:app
    ```
 3. Deploy:
    ```bash
