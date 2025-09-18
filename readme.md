@@ -369,7 +369,7 @@ If you use this project in your research, please cite:
   author = {Wasim Nawaz},
   title = {Emotion Detection Flask App with Hugging Face},
   url = {https://github.com/wasimnawaz1/emotion-detection-hf},
-  year = {2024}
+  year = {2025}
 }
 ```
 
